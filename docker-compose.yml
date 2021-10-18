@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  proxy:
+    build: proxy
+    ports:
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./proxy/volumes/certs:/etc/nginx/certs:ro
+
+  collaboration-server:
+    image: yworksgmbh/graphity-collaboration-server
+    expose: 
+      - "9093"
+    environment:
+      - VIRTUAL_HOST=<HOSTNAME>
+      - VIRTUAL_PORT=9093
+      - SERVER_TOKEN=<TOKEN>
+      - SERVER_CONTEXT=/graphity/rtc
+      - LOGLEVEL=WARNING
