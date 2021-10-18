@@ -10,7 +10,7 @@ services:
       - ./proxy/volumes/certs:/etc/nginx/certs:ro
 
   collaboration-server:
-    image: yworksgmbh/graphity-collaboration-server
+    image: yworksgmbh/graphity-collaboration-server:1.0.0
     expose: 
       - "9093"
     environment:
